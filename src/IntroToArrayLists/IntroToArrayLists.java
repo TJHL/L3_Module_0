@@ -23,10 +23,26 @@ public class IntroToArrayLists {
 		for(String s: listName) {
 			System.out.println(s);
 		}
-		//5. Print only the even numbered elements in the list.
 		
-		//6. Print all the Strings in reverse order.
+		System.out.println("\n");
 		
-		//7. Print only the Strings that have the letter 'e' in them.
+		for(int i=0;i<(listName.size()/2)+2;i=i+2) {
+			String s = listName.get(i);
+			System.out.println(s);
+		}
+		System.out.println("\n");
+
+		for(int i=(listName.size()-1);i>=0;i--) {
+			String s = listName.get(i);
+			System.out.println(s);
+		}
+		System.out.println("\n");
+
+		for(int i=0;i<listName.size();i++) {
+			String s = listName.get(i);
+			if (s.contains("e")) {
+				System.out.println(s);
+			}
+		}
 	}
 }
