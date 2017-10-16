@@ -13,7 +13,7 @@ public class TextUndoRedo implements KeyListener {
 	JFrame frame = new JFrame();
 	JPanel panel = new JPanel();
 	JLabel label = new JLabel("");//Suck lead, not actually commusist scum!");
-	Stack<String> savedUndo = new Stack<String>();
+	Stack<Character> savedUndo = new Stack<Character>();
 	
 	public static void main(String[] args) {
 		TextUndoRedo a= new TextUndoRedo();
@@ -41,26 +41,20 @@ public class TextUndoRedo implements KeyListener {
 	
 	
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode()==KeyEvent.VK_ENTER) {
-			label.setText(label.getText()+"\n");
-			
-		}
 		if(e.getKeyCode()==KeyEvent.VK_BACK_SPACE) {
-			savedUndo.push(label.getText().length()-1+"");
+			savedUndo.push(label.getText().charAt(label.getText().length()-1));
 			String backTexed= label.getText().substring(0,label.getText().length()-1);
 			label.setText(backTexed);
 
-			
 			}	
-		if(e.getKeyCode()==KeyEvent.VK_DEAD_TILDE) {
-			label.setText(savedUndo.pop());
+		else if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+		
+			label.setText(label.getText()+savedUndo.pop());
 		}
 		else 
-		label.setText(label.getText()+e.getKeyChar());
-		
+			label.setText(label.getText()+e.getKeyChar());
 		
 	}
 	
-	public void keyReleased(KeyEvent e){}public void keyTyped(KeyEvent e) {}
-	
+	public void keyReleased(KeyEvent e){}public void keyTyped(KeyEvent e) {}	
 }
