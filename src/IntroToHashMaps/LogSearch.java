@@ -1,20 +1,26 @@
 package IntroToHashMaps;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class LogSearch {
-	  HashMap<Integer, String> ok = new HashMap<Integer, String>();
+public class LogSearch implements ActionListener {
+	  HashMap<Integer, String> idList = new HashMap<Integer, String>();
 	  JFrame frame = new JFrame();
 	  JPanel panel = new JPanel();
 	  JButton AddEntry = new JButton("Add Entry");
 	  JButton SearchID = new JButton("Search by ID");
 	  JButton ViewList = new JButton("View List");
   public static void main(String[] args) {
+	  
+	  LogSearch a = new LogSearch();
   }
+  
 	  LogSearch() {
 	  frame.add(panel);
 	  panel.add(AddEntry);
@@ -23,7 +29,39 @@ public class LogSearch {
 	  frame.pack();
 	  frame.setVisible(true);
 	  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	  AddEntry.addActionListener(this);
+	  SearchID.addActionListener(this);
+	  ViewList.addActionListener(this);
+	  
 	  }
+
+	
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==AddEntry) {
+			int newID=Integer.parseInt(JOptionPane.showInputDialog("Enter a identificationiser number"));
+			String newName=JOptionPane.showInputDialog("Enter a name for the identificationiser number");
+			idList.put(newID, newName);
+			System.out.println(idList);
+			
+		}
+		if(e.getSource()==SearchID) {
+			int checkID= Integer.parseInt(JOptionPane.showInputDialog("Enter a identificationiser number"));
+			if(idList.containsKey(checkID) == true) {
+	    		JOptionPane.showMessageDialog(null, "Id number: "+" ,User name: "+"");
+			}
+			else JOptionPane.showMessageDialog(null, "Who the hell are you trying to kindap?!");
+			
+		}
+		if(e.getSource()==ViewList) {
+			JOptionPane.showMessageDialog(null,"All ");
+			
+				for(String s : idList.values()){
+						System.out.println(s);
+						}
+			
+		}
+		
+	}
 
 	
 	/* 
