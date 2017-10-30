@@ -38,7 +38,7 @@ public class LogSearch implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==AddEntry) {
-			int newID=Integer.parseInt(JOptionPane.showInputDialog("Enter a identificationiser number"));
+			int newID=Integer.parseInt(JOptionPane.showInputDialog("Create a new identificationiser number"));
 			String newName=JOptionPane.showInputDialog("Enter a name for the identificationiser number");
 			idList.put(newID, newName);
 			System.out.println(idList);
@@ -47,18 +47,21 @@ public class LogSearch implements ActionListener {
 		if(e.getSource()==SearchID) {
 			int checkID= Integer.parseInt(JOptionPane.showInputDialog("Enter a identificationiser number"));
 			if(idList.containsKey(checkID) == true) {
-	    		JOptionPane.showMessageDialog(null, "Id number: "+" ,User name: "+"");
+		
+	    		JOptionPane.showMessageDialog(null, "Id number: "+checkID+", User name: "+(idList.get(checkID)));
 			}
 			else JOptionPane.showMessageDialog(null, "Who the hell are you trying to kindap?!");
 			
 		}
 		if(e.getSource()==ViewList) {
-			JOptionPane.showMessageDialog(null,"All ");
+			String a="";
+			for (int i:idList.keySet()) {
+				a=a+"Id: "+i+" Username: "+idList.get(i)+"\n";
+			}
 			
-				for(String s : idList.values()){
-						System.out.println(s);
-						}
-			
+			JOptionPane.showMessageDialog(null,"All Ids and Usernames \n"+a);
+		//	"Id: "+""+" Username: "+""+"\n"
+				
 		}
 		
 	}
